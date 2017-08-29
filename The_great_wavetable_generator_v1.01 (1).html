@@ -48,7 +48,7 @@ function go(){
        var color = Math.round(Math.random() * 255);
        var higher = gheight + 127
        var lower = 128 - gheight
-       if (color > lower || color > higher){
+       if (color > lower || color < higher){
         hstop = 1
        }
        }
