@@ -1,0 +1,71 @@
+<html>
+<head>
+  <style>
+  body{
+    background-image: url("http://img12.deviantart.net/f22a/i/2011/261/2/0/huh____by_artfx_studios-d4a7vxt.jpg");
+    color: white;
+    font-family: arial;
+  }
+  a{
+    color: white;
+  }
+  </style>
+</head>
+<body>
+  <h1>THE GREAT SERUM WAVETABLE GENERATOR</h1>
+  <div id = "header">
+  <p id = "textbef">Width (amount of different "waves")<input type = "text" id = "col" size="3"><br></p>
+  <p id = "textbef">Height (contents of each "wave")<input type = "text" id = "row" size="3"></p>
+  <p id = "textbef">Min height (all, value 1-128)<input type = "text" id = "minheight" size="3" value="0"></p>
+  <button onClick="go()">Create image / reload page</button>
+  <a id = "download" download="Randomwavetable" href="" class="button">Download</a>
+</div>
+<div id = "canvass">
+  <canvas id = "canvas"></canvas>
+</div>
+<div id = "imgg">
+  <img id = "png" width = "20%" style = "image-rendering: pixelated;" src="http://artfx-studios.com/wp-content/uploads/2017/04/ARTFX-Logo-White-uai-258x185.png"/>
+  <script>
+  var run = 0;
+
+function go(){
+  if (run == 1){
+      location.reload();}
+  else {
+   var x = document.getElementById('row').value
+   var y = document.getElementById('col').value
+   var gheight = document.getElementById('minheight').value
+   var c = document.getElementById('canvas');
+   var strt = c.getContext('2d');
+   canvas.width  = x;
+   canvas.height = y;
+   strt.fillStyle = 'rgb(0,0,0)';
+   strt.fillRect(0, 0, x, y);
+    for (i = 0; i < y; i++){
+     for(z = 0; z < x; z++){
+       var hstop = 0
+       while (hstop == 0){
+       var color = Math.round(Math.random() * 255);
+       var higher = gheight + 127
+       var lower = 128 - gheight
+       if (color > lower || color > higher){
+        hstop = 1
+       }
+       }
+       var c = document.getElementById('canvas');
+       var strt = c.getContext('2d');
+       strt.fillStyle = 'rgb(' + color + ', ' + color + ', ' + color + ')';
+       strt.fillRect(z, i, 1, 1);} }
+
+  var kek = document.getElementsByTagName("canvas");
+  var url = kek[0].toDataURL("image/png");
+  alert(url)
+  document.getElementById('png').src = url
+  document.getElementById('download').href = url}
+  run++}
+  </script>
+</div>
+<p>NOTE: a value between 1 and 20 is recommended for the wave value, otherwise it will just become noise. <br> Also the page must be reloaded before creating a new image (do this by clicking the create wavetable button one more time)due to a little bug. Have fun!</p>
+<p>PS. This is version 1 and I will be adding more functionality later like conversion to a serum wavetable file (.wav) so you can directly access them in serum</p>
+</body>
+</html>
