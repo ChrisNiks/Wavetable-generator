@@ -1,0 +1,42 @@
+html {
+    padding: 0;
+}
+body{
+    background-image: url("http://screenprism.com/assets/img/article/Morty.JPG");
+    color: white;
+    font-family: arial;
+    margin: 0px;
+}
+
+a{
+    color: white;
+}
+
+#wrapper{
+    margin: 0 auto;
+    /* background-color: green; */
+    padding: 10px;
+}
+
+#footer{
+    width: 100%;
+    bottom: 0;
+}
+
+#left{
+    float: left;
+    width: 50%;
+}
+
+#right{
+    float: left;
+    width: 50%;
+    overflow: hidden;
+    height: 80%;
+}
+
+#all{
+    background-color:rgba(0,0,0,0.8);
+    min-height: 99%; 
+    padding: 5px;
+}
