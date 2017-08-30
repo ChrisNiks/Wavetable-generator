@@ -1,0 +1,138 @@
+<html>
+<head>
+  <style>
+  body{
+    background-image: url("http://screenprism.com/assets/img/article/Morty.JPG");
+    color: white;
+    font-family: arial;
+  }
+  a{
+    color: white;
+  }
+  #wrapper{
+    margin: 0 auto;
+    background-color: green;
+  }
+  #footer{
+    width: 100%;
+    bottom: 0;
+  }
+  #left{
+    float: left;
+    width: 50%;
+  }
+  #right{
+    float: left;
+    width: 50%;
+    overflow: hidden;
+    height: 80%;
+  }
+#all{
+  background-color:rgba(0,0,0,0.8);
+  min-height: 99%; 
+  padding: 5px;
+}
+  </style>
+</head>
+<body>
+  <div id = "all">
+  <div id = "wrapper">
+    <div id = "left">
+  <h1>THE GREAT SERUM WAVETABLE GENERATOR</h1>
+  
+  <p id = "textbef">Width (amount of different "waves")<input type = "text" id = "col" size="3" value = "1"><br></p>
+  <p id = "textbef">Height (contents of each "wave")<input type = "text" id = "row" size="3" value = 5></p>
+  
+  <p id = "textbef">Min height (all, value 1-128)<input type = "range" id = "minheightt" min = "0" max = "127" step = "1" onchange="showValue(this.value)" value = "0"></p>
+  <p id = "textbef">Min height (all, value 1-128)<input type = "text" id = "minheight" size="3" value = "0"></p>
+  <button onClick="go()">Create image / reload page</button>
+  <a id = "download" download="Randomwavetable" href="" class="button">Download</a>
+
+<div id = "canvass">
+  <canvas id = "canvas"></canvas>
+</div>
+  <img id = "png" width = "20%" style = "image-rendering: pixelated;" src="http://www.cityrider.com/fixed/43aspect.png"/>
+  <script>
+function showValue(newValue)
+{
+	document.getElementById("minheight").value=newValue;
+}
+  var run = 0;
+
+function go(){
+  if (run == 1){
+      location.reload();}
+  else {
+   var x = document.getElementById('row').value
+   var y = document.getElementById('col').value
+   var gheight = document.getElementById('minheight').value
+   
+   var c = document.getElementById('canvas');
+   var strt = c.getContext('2d');
+   canvas.width  = x;
+   canvas.height = y;
+   strt.fillStyle = 'rgb(0,0,0)';
+   strt.fillRect(0, 0, x, y);
+   var higher = 127 + parseInt(gheight)
+    var lower = 128 - parseInt(gheight)
+    for (i = 0; i < y; i++){
+     for(z = 0; z < x; z++){
+       var hstop = 0
+       while (hstop == 0){
+       var color = Math.round(Math.random() * 255);
+       if (color > higher || color < lower){
+        hstop = 1
+       }
+       }
+       var c = document.getElementById('canvas');
+       var strt = c.getContext('2d');
+       strt.fillStyle = 'rgb(' + color + ', ' + color + ', ' + color + ')';
+       strt.fillRect(z, i, 1, 1);} }
+
+  var kek = document.getElementsByTagName("canvas");
+  var url = kek[0].toDataURL("image/png");
+  document.getElementById('png').src = url
+  document.getElementById('download').href = url}
+  run++
+  waveform();
+  }
+  </script>
+
+</div>
+<div id = "right">
+<canvas id = "canvas2" width="510" height="255" style="border:1px solid #d3d3d3;"></canvas>
+<script>
+  function waveform() {
+    var x = document.getElementById('row').value
+    var value = [];
+    for (i = 0; i < x; i ++){
+       var c = document.getElementById('canvas');
+       var ctx = c.getContext('2d');
+       var pixel = ctx.getImageData(i, 0, 1, 1);
+       var data = pixel.data;
+       
+       value[i] = data[0]
+     }
+     var c = document.getElementById('canvas2');
+       var ctx = c.getContext('2d');
+       ctx.strokeStyle = 'rgb(0, 0, 0)';
+       ctx.fillStyle = 'rgb(255, 255, 255)';
+       ctx.fillRect(0,0,510,255);
+       ctx.beginPath();
+       ctx.moveTo(0,255 - value[0]);
+       var xas = 510 / x
+       for (i = 0; i < x; i++)
+{       ctx.lineTo(((i + 1)* xas) + xas, 255 - value[i + 1])
+}
+        ctx.stroke();
+  }
+</script>
+</div>
+</div>
+<div id = "footer">
+<p>NOTE: a value between 1 and 20 is recommended for the wave value, otherwise it will just become noise. <br> Also the page must be reloaded before creating a new image (do this by clicking the create wavetable button one more time)due to a little bug. Have fun!</p>
+<p>PS. This is version 1 and I will be adding more functionality later like conversion to a serum wavetable file (.wav) so you can directly access them in serum</p>
+</div>
+</div>
+</body>
+</html>
