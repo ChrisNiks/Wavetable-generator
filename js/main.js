@@ -1,7 +1,13 @@
 var run = 0;
-
+var ID = 0;
 function showValue(newValue) {
     document.getElementById("minheight").value = newValue;
+}
+
+function WaveId(newValue) {
+    document.getElementById("ValueWave").value = newValue;
+    ID = newValue;
+    waveform();
 }
 
 function go() {
@@ -45,7 +51,7 @@ function go() {
 
         document.getElementById('png').src = url;
         document.getElementById('download').href = url;
-    
+        document.getElementById("Waveform").max = y - 2;
     run++;
     waveform();
 }
@@ -53,11 +59,11 @@ function go() {
 function waveform() {
     var x = document.getElementById('row').value
     var value = [];
-
+    
     for (i = 0; i < x; i++) {
         var c = document.getElementById('canvas');
         var ctx = c.getContext('2d');
-        var pixel = ctx.getImageData(i, 0, 1, 1);
+        var pixel = ctx.getImageData(i, ID, 1, 1);
         var data = pixel.data;
 
         value[i] = data[0];
