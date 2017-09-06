@@ -5,16 +5,13 @@ function showValue(newValue) {
 }
 
 function go() {
-    if (run == 1) {
-        location.reload();
-    } else {
         var x = document.getElementById('row').value;
         var y = document.getElementById('col').value;
         var gheight = document.getElementById('minheight').value;
 
         var c = document.getElementById('canvas');
         var strt = c.getContext('2d');
-
+        strt.clearRect(0, 0,  canvas.width, canvas.height);
         canvas.width  = x;
         canvas.height = y;
 
@@ -48,7 +45,7 @@ function go() {
 
         document.getElementById('png').src = url;
         document.getElementById('download').href = url;
-    }
+    
     run++;
     waveform();
 }
