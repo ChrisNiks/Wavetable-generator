@@ -11,10 +11,11 @@
 
         <p id = "textbef">Width (amount of different "waves")<input type = "text" id = "col" size="3" value = "1"><br></p>
         <p id = "textbef">Height (contents of each "wave")<input type = "text" id = "row" size="3" value = 5></p>
-
         <p id = "textbef">Min height (all, value 1-128)<input type = "range" id = "minheightt" min = "0" max = "127" step = "1" onchange="showValue(this.value)" oninput="showValue(this.value)" value = "0"></p>
         <p id = "textbef">Min height (all, value 1-128)<input type = "text" id = "minheight" size="3" value = "0"></p>
-        <button onClick="go()">Create wavetable</button>
+        <p id = "textbef">Squarify (makes it sound a bit sharper, leave at 0 if height is high)<input type = "range" id = "SquarifyRange" min = "0" max = "20" step = "1" onchange="SquareValue(this.value)" oninput="SquareValue(this.value)" value = "0"></p>
+        <p id = "textbef">Squarify (makes it sound a bit sharper, leave at 0 if height is high)<input type = "text" id = "SquarifyText" size="3" value = "0"></p>
+        <button onClick="random()">Create wavetable</button>
         <a id = "download" download="Randomwavetable" href="" class="button">Download</a>
 
         <div id = "canvass">
@@ -25,6 +26,8 @@
 
         <img id = "png" width = "20%" style = "image-rendering: pixelated;" src="http://www.cityrider.com/fixed/43aspect.png"/>
         <script src="js/main.js"></script>
+        <script src="js/random.js"></script>
+        <script src="js/perlin.js"></script>
 
       </div>
     <div id = "right">
