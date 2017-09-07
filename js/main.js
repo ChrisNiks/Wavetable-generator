@@ -51,7 +51,7 @@ function go() {
 
         document.getElementById('png').src = url;
         document.getElementById('download').href = url;
-        document.getElementById("Waveform").max = y - 2;
+        document.getElementById("Waveform").max = y - 1;
     run++;
     waveform();
 }
