@@ -10,54 +10,12 @@ function WaveId(newValue) {
     waveform();
 }
 
-function go() {
-        var x = document.getElementById('row').value;
-        var y = document.getElementById('col').value;
-        var gheight = document.getElementById('minheight').value;
-
-        var c = document.getElementById('canvas');
-        var strt = c.getContext('2d');
-        strt.clearRect(0, 0,  canvas.width, canvas.height);
-        canvas.width  = x;
-        canvas.height = y;
-
-        strt.fillStyle = 'rgb(0,0,0)';
-        strt.fillRect(0, 0, x, y);
-
-        var higher = 127 + parseInt(gheight);
-        var lower = 128 - parseInt(gheight);
-
-        for (i = 0; i < y; i++){
-            for(z = 0; z < x; z++){
-                var hstop = 0;
-
-                while (hstop == 0){
-                    var color = Math.round(Math.random() * 255);
-
-                    if (color > higher || color < lower){
-                        hstop = 1;
-                    }
-                }
-                var c = document.getElementById('canvas');
-                var strt = c.getContext('2d');
-
-                strt.fillStyle = 'rgb(' + color + ', ' + color + ', ' + color + ')';
-                strt.fillRect(z, i, 1, 1);
-            }
-        }
-
-        var kek = document.getElementsByTagName("canvas");
-        var url = kek[0].toDataURL("image/png");
-
-        document.getElementById('png').src = url;
-        document.getElementById('download').href = url;
-        document.getElementById("Waveform").max = y - 1;
-    run++;
-    waveform();
+function SquareValue(newValue) {
+    document.getElementById("SquarifyText").value = newValue;
 }
 
 function waveform() {
-    var x = document.getElementById('row').value
+    var x = canvas.width
     var value = [];
     
     for (i = 0; i < x; i++) {
@@ -85,3 +43,4 @@ function waveform() {
     }
     ctx.stroke();
 }
+
